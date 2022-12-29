@@ -1,19 +1,38 @@
 pipeline {
     agent any
+
+    tools {
+        // Install the Maven version configured as "M3" and add it to the path.
+        maven 'Maven3.8.6'
+    }
+
     stages {
-        stage ('Git') {
-         steps{
-            echo "Git step in process"
-             git branch: 'main', url: 'https://github.com/jokindy/TomcatTestApp.git'
-             echo "Git step is finished"
+        stage('Git') {
+            steps {
+                // Get some code from a GitHub repository
+                git branch: 'main', url: 'https://github.com/jokindy/Pipeline.git'
+            }
+        }
+
+
+        stage ('Build') {
+            when {
+                changeRequest target: "adad"
+            }
+            steps {
+                echo "Build in process"
+                sh 'mvn clean install'
+                echo "Build is finished"
+            }
+        }
+        stage ('Deploy') {
+            steps {
+                 script {
+                   deploy adapters: [tomcat8(credentialsId: '7aaf9731-98ce-4f27-aaf7-6f289bd37ad5', path: '', url: 'http://192.168.216.78:8080')], contextPath: '/TomcatMavenApp', onFailure: false, war: 'target/*.war'
+               }
+             }
           }
-      }
-      stage ('Deploy') {
-                  steps {
-                       script {
-                         deploy adapters: [tomcat9(credentialsId: 'tomcat_credential', path: '', url: 'http://192.168.216.78:8080/')], contextPath: '/PipelineJob', onFailure: false, war: 'webapp/target/*.war'
-                     }
-                   }
-                }
+
     }
 }
+
