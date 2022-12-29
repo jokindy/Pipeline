@@ -9,7 +9,9 @@ pipeline {
     stages {
         stage ('Build') {
             when {
-                changeRequest target: 'main'
+                expression {
+                    env.BRANCH_NAME.startsWith('PR')
+                }
             }
             steps {
                 echo "Build in process"
