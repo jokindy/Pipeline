@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage ('Build') {
             when {
-                scm.branches.contains('PR-2')
+                env.branches.contains('PR-2')
             }
             steps {
                 echo "Build in process"
