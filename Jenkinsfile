@@ -8,6 +8,11 @@ pipeline {
 
     stages {
         stage ('Build') {
+            when {
+                expression {
+                    env.BRANCH_NAME = 'new'
+                }
+            }
             steps {
                 echo "Build in process"
                 sh 'mvn clean install'
