@@ -8,9 +8,6 @@ pipeline {
 
     stages {
         stage ('Build') {
-            when {
-                changeRequest()
-            }
             steps {
                 echo "Build in process"
                 sh 'mvn clean install'
