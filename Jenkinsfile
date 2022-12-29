@@ -9,9 +9,7 @@ pipeline {
     stages {
         stage ('Build') {
             when {
-                expression {
-                    env.BRANCH_NAME = 'new'
-                }
+                changeRequest target: 'main'
             }
             steps {
                 echo "Build in process"
