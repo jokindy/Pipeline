@@ -7,17 +7,9 @@ pipeline {
     }
 
     stages {
-        stage('Git') {
-            steps {
-                // Get some code from a GitHub repository
-                git branch: 'main', url: 'https://github.com/jokindy/Pipeline.git'
-            }
-        }
-
-
         stage ('Build') {
             when {
-                changeRequest target: "adad"
+                changeRequest()
             }
             steps {
                 echo "Build in process"
