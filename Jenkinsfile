@@ -10,7 +10,7 @@ pipeline {
         stage ('Build') {
             when {
                 expression {
-                    env.BRANCH_NAME.startsWith('PR')
+                    env.BRANCH_NAME == 'main'
                 }
             }
             steps {
