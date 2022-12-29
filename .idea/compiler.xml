@@ -8,11 +8,13 @@
         <outputRelativeToContentRoot value="true" />
         <module name="TomcatTestApp" />
         <module name="TomcatMavenApp" />
+        <module name="Pipeline" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Pipeline" options="-endorseddirs C:\Users\Андрей\dev\Pipeline\target/endorsed" />
       <module name="TomcatMavenApp" options="-endorseddirs C:\Users\Андрей\dev\TomcatMavenApp\target/endorsed" />
       <module name="TomcatTestApp" options="-endorseddirs C:\Users\Андрей\dev\TomcatTestApp\target/endorsed" />
     </option>
