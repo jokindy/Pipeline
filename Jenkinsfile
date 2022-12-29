@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage ('Build') {
             when {
-                !changeRequest()
+                changeRequest()
             }
             steps {
                 echo "Build in process"
