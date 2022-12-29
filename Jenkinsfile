@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage ('Build') {
             when {
-                env.branches.contains('PR-2')
+                !changeRequest()
             }
             steps {
                 echo "Build in process"
